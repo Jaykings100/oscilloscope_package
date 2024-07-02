@@ -1,0 +1,8 @@
+README.md
+oscilloscope_control.py
+setup.py
+oscilloscope_control.egg-info/PKG-INFO
+oscilloscope_control.egg-info/SOURCES.txt
+oscilloscope_control.egg-info/dependency_links.txt
+oscilloscope_control.egg-info/requires.txt
+oscilloscope_control.egg-info/top_level.txt
