@@ -1,6 +1,8 @@
 import time
 import numpy as np
 from RsInstrument import RsInstrument, BinFloatFormat
+import csv
+import os
 
 class OscilloscopeControl:
     def __init__(self, ip_address):
@@ -59,3 +61,13 @@ class OscilloscopeControl:
         self.instr.bin_float_numbers_format = BinFloatFormat.Single_4bytes
         data = self.instr.query_bin_or_ascii_float_list(f'FORM REAL,32;:CHAN{channel}:DATA?')
         return data
+    
+    def saveDataToCSV(self, filename, time_array, data_array):
+        """Save the acquired data to a CSV file."""
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        with open(filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Time (s)", "Voltage (V)"])
+            for t, v in zip(time_array, data_array):
+                writer.writerow([t, v])
+        print(f"Data saved to {filename}")
